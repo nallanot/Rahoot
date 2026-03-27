@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router"
 import AuthManagerPage from "./pages/game/auth/manager/page"
 import ManagerGamePage from "./pages/game/party/manager/page"
 import PlayerGamePage from "./pages/game/party/page"
+import { I18nProvider } from "@/i18n"
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   },
 ])
 
-const Router = () => <RouterProvider router={router} />
+const Router = () => (
+  <I18nProvider>
+    <RouterProvider router={router} />
+  </I18nProvider>
+)
 
 export default Router
