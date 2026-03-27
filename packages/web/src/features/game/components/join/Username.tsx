@@ -7,22 +7,23 @@ import {
   useSocket,
 } from "@rahoot/web/features/game/contexts/socketProvider"
 import { usePlayerStore } from "@rahoot/web/features/game/stores/player"
-
 import { type KeyboardEvent, useState } from "react"
 import { useNavigate } from "react-router"
+import { useI18n } from "@/i18n"
 
 const Username = () => {
   const { socket } = useSocket()
   const { gameId, login, setStatus } = usePlayerStore()
   const navigate = useNavigate()
+  const { t } = useI18n()
   const [username, setUsername] = useState("")
 
   const handleLogin = () => {
-    if (!gameId) {
+    if (!gameId || !username.trim()) {
       return
     }
 
-    socket?.emit("player:login", { gameId, data: { username } })
+    socket?.emit("player:login", { gameId, data: { username: username.trim() } })
   }
 
   const handleKeyDown = (event: KeyboardEvent) => {
@@ -32,8 +33,8 @@ const Username = () => {
   }
 
   useEvent("game:successJoin", (gameId) => {
-    setStatus(STATUS.WAIT, { text: "Waiting for the players" })
-    login(username)
+    setStatus(STATUS.WAIT, { text: t("game.waitingPlayers") })
+    login(username.trim())
 
     navigate(`/party/${gameId}`)
   })
@@ -41,11 +42,12 @@ const Username = () => {
   return (
     <Form>
       <Input
+        value={username}
         onChange={(e) => setUsername(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Username here"
+        placeholder={t("auth.usernamePlaceholder")}
       />
-      <Button onClick={handleLogin}>Submit</Button>
+      <Button onClick={handleLogin}>{t("common.submit")}</Button>
     </Form>
   )
 }
