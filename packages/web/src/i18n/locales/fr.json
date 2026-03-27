@@ -1,0 +1,42 @@
+{
+  "app.title": "Rahoot",
+  "language.label": "Langue",
+  "language.en": "Anglais",
+  "language.fr": "Français",
+
+  "home.joinGame": "Rejoindre une partie",
+  "home.enterPin": "Entrer le code PIN",
+  "home.enterNickname": "Entrer le pseudo",
+  "home.play": "Jouer",
+  "home.invalidPin": "Code PIN invalide",
+  "home.nicknameRequired": "Le pseudo est requis",
+
+  "manager.title": "Gestionnaire",
+  "manager.password": "Mot de passe gestionnaire",
+  "manager.login": "Se connecter",
+  "manager.startGame": "Démarrer la partie",
+  "manager.nextQuestion": "Question suivante",
+  "manager.endGame": "Terminer la partie",
+  "manager.selectQuiz": "Choisir un quiz",
+  "manager.players": "Joueurs",
+  "manager.roomCode": "Code de la salle",
+  "manager.leaderboard": "Classement",
+
+  "game.waitingPlayers": "En attente des joueurs...",
+  "game.question": "Question",
+  "game.answers": "Réponses",
+  "game.timeLeft": "Temps restant",
+  "game.correct": "Bonne réponse !",
+  "game.wrong": "Mauvaise réponse !",
+  "game.gameOver": "Partie terminée",
+  "game.finalScore": "Score final",
+  "game.cooldown": "Préparez-vous...",
+
+  "common.back": "Retour",
+  "common.close": "Fermer",
+  "common.cancel": "Annuler",
+  "common.confirm": "Confirmer",
+  "common.loading": "Chargement...",
+  "common.error": "Une erreur est survenue",
+  "common.retry": "Réessayer"
+}
