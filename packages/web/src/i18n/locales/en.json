@@ -1,0 +1,26 @@
+{
+  "quiz": {
+    "title": "Quiz Game",
+    "description": "Test your knowledge with fun quizzes!",
+    "questions": {
+      "label": "Questions",
+      "instruction": "Choose the correct answer for each question."
+    },
+    "answers": {
+      "label": "Answers",
+      "correct": "Correct!",
+      "incorrect": "Incorrect!"
+    },
+    "start": "Start Quiz",
+    "end": "End Quiz",
+    "score": "Your score: {{score}}",
+    "performance": "Performance Overview",
+    "retry": "Try Again"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred. Please try again later.",
+    "ok": "OK",
+    "cancel": "Cancel"
+  }
+}
