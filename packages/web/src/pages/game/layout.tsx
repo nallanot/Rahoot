@@ -4,9 +4,11 @@ import {
 } from "@rahoot/web/features/game/contexts/socketProvider"
 import { useEffect } from "react"
 import { Outlet } from "react-router"
+import LanguageSwitcher from "@/components/LanguageSwitcher"
 
 const GameLayoutWrapped = () => {
   const { isConnected, connect } = useSocket()
+
   useEffect(() => {
     if (!isConnected) {
       connect()
@@ -22,7 +24,10 @@ const GameLayoutWrapped = () => {
   }, [])
 
   return (
-    <div className="antialiased bg-secondary">
+    <div className="antialiased bg-secondary min-h-screen">
+      <div className="flex justify-end p-4">
+        <LanguageSwitcher />
+      </div>
       <Outlet />
     </div>
   )
