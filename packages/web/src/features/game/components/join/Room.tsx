@@ -8,10 +8,12 @@ import {
 import { usePlayerStore } from "@rahoot/web/features/game/stores/player"
 import { type KeyboardEvent, useEffect, useRef, useState } from "react"
 import { useSearchParams } from "react-router"
+import { useI18n } from "@/i18n"
 
 const Room = () => {
   const { socket, isConnected } = useSocket()
   const { join } = usePlayerStore()
+  const { t } = useI18n()
   const [invitation, setInvitation] = useState("")
   const [searchParams] = useSearchParams()
   const hasJoinedRef = useRef(false)
@@ -46,9 +48,9 @@ const Room = () => {
       <Input
         onChange={(e) => setInvitation(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="PIN Code here"
+        placeholder={t("home.enterPin")}
       />
-      <Button onClick={handleJoin}>Submit</Button>
+      <Button onClick={handleJoin}>{t("common.submit")}</Button>
     </Form>
   )
 }
