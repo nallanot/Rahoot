@@ -3,5 +3,7 @@ services:
     image: ralex91/rahoot:latest
     ports:
       - "3000:3000"
+    environment:
+      MANAGER_PASSWORD: ${MANAGER_PASSWORD:?MANAGER_PASSWORD must be set}
     volumes:
       - ./config:/app/config
