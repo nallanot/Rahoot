@@ -20,16 +20,7 @@ class Config {
     const isGameConfigExists = fs.existsSync(getPath("game.json"))
 
     if (!isGameConfigExists) {
-      fs.writeFileSync(
-        getPath("game.json"),
-        JSON.stringify(
-          {
-            managerPassword: "PASSWORD",
-          },
-          null,
-          2,
-        ),
-      )
+      fs.writeFileSync(getPath("game.json"), JSON.stringify({}, null, 2))
     }
 
     const isQuizzExists = fs.existsSync(getPath("quizz"))
@@ -84,8 +75,12 @@ class Config {
 
     try {
       const config = fs.readFileSync(getPath("game.json"), "utf-8")
+      const parsedConfig = JSON.parse(config)
+      const managerPassword = process.env.MANAGER_PASSWORD
 
-      return JSON.parse(config)
+      return managerPassword
+        ? { ...parsedConfig, managerPassword }
+        : parsedConfig
     } catch (error) {
       console.error("Failed to read game config:", error)
     }
