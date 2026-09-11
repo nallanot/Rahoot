@@ -43,14 +43,17 @@ You can find the docker compose configuration in the repository:
 [docker-compose.yml](/compose.yml)
 
 ```bash
-docker compose up -d
+MANAGER_PASSWORD="choose-a-strong-password" docker compose up -d
 ```
+
+When deploying from Portainer, add `MANAGER_PASSWORD` under **Environment variables** before deploying the stack.
 
 Or using Docker directly:
 
 ```bash
 docker run -d \
   -p 3000:3000 \
+  -e MANAGER_PASSWORD="choose-a-strong-password" \
   -v ./config:/app/config \
   ralex91/rahoot:latest
 ```
@@ -96,19 +99,19 @@ pnpm start
 
 The configuration is split into two main parts:
 
-### 1. Game Configuration (`config/game.json`)
+### 1. Manager password
 
-Main game settings:
+Set the manager password with the `MANAGER_PASSWORD` environment variable. This is the recommended method for Docker and keeps the password out of `config/game.json`.
+
+For backward compatibility, `managerPassword` in `config/game.json` is still supported when `MANAGER_PASSWORD` is not set:
 
 ```json
 {
-  "managerPassword": "PASSWORD"
+  "managerPassword": "choose-a-strong-password"
 }
 ```
 
-Options:
-
-- `managerPassword`: The master password for accessing the manager interface. **Must be changed from the default `"PASSWORD"` value**, otherwise manager access is blocked.
+When both are defined, `MANAGER_PASSWORD` takes priority. Manager access is blocked if neither value is configured or if the legacy value is still `"PASSWORD"`.
 
 ### 2. Quiz Configuration (`config/quizz/*.json`)
 
@@ -148,7 +151,7 @@ Quiz Options:
 ## 🎮 How to Play
 
 1. Access the manager interface at http://localhost:3000/manager
-2. Enter the manager password (defined in `config/game.json`)
+2. Enter the manager password (defined by `MANAGER_PASSWORD`, or by the legacy `config/game.json` setting)
 3. Share the game URL (http://localhost:3000) and room code with participants
 4. Wait for players to join
 5. Click the start button to begin the game
