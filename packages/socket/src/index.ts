@@ -51,7 +51,7 @@ io.on("connection", (socket) => {
     try {
       const config = Config.game()
 
-      if (config.managerPassword === "PASSWORD") {
+      if (!config.managerPassword || config.managerPassword === "PASSWORD") {
         socket.emit("manager:errorMessage", "Manager password is not configured")
 
         return
